@@ -24,3 +24,15 @@ export const deletePlant = (plantId) => {
         }
     })
     }
+
+export const addNewPlant = (plant) => {
+    return fetch("http://localhost:8000/plants", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("help_token")}`
+        },
+        body: JSON.stringify(plant)
+        
+    }).then(res => res.json())
+    }
