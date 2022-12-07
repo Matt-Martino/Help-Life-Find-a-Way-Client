@@ -15,3 +15,12 @@ export const getPlantsByUserId = (token) => {
     })
         .then(res => res.json())
     }
+
+export const deletePlant = (plantId) => {
+    return fetch(`http://localhost:8000/plants/${plantId}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("help_token")}`
+        }
+    })
+    }
