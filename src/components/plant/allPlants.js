@@ -15,7 +15,7 @@ export const AllPlants = () => {
         .then((allPlantsArray) => {
             setAllPlants(allPlantsArray)
         })
-    })
+    }, [])
 
     const renderPlants = () => {
 
