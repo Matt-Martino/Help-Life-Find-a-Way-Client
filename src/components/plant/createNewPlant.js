@@ -8,11 +8,11 @@ import { getAllPlantTypes } from "../../managers/PlantTypeManager"
 
 export const CreateNewPlant = ({ token }) => {
     const navigate = useNavigate()
-    const userId = parseInt(token)
+    let newPlantData = ""
+    const userId = token
     const [allCareTips, setAllCareTips] = useState([])
     const [allPlantTypes, setAllPlantTypes] = useState([])
     const [plant, setNewPlantDetails] = useState({
-        user_id: 0,
         available: false,
         new_plant_care: "",
         plant_age: "",
@@ -41,9 +41,9 @@ export const CreateNewPlant = ({ token }) => {
         chosenCareTips.forEach((careTip) => {
           const CareTipToAPI = {
             plant: parsedResponse.id,
-            care_tip: careTip,
+            care_tip: parseInt(careTip),
           };
-          fetch(`http://localhost:8000/careTips`, {
+          fetch(`http://localhost:8000/plantCareTips`, {
             method: "POST",
             headers: {
               "Content-type": "application/json",
@@ -53,13 +53,14 @@ export const CreateNewPlant = ({ token }) => {
           }).then((response) => response.json())
         })
       }
+      
       const plantTypesPerPlant = (parsedResponse) => {
         chosenPlantTypes.forEach((plantType) => {
           const PlantTypeToAPI = {
             plant: parsedResponse.id,
-            plant_type: plantType,
+            plant_type: parseInt(plantType),
           };
-          fetch(`http://localhost:8000/plantTypes`, {
+          fetch(`http://localhost:8000/userPlantPlantTypes`, {
             method: "POST",
             headers: {
               "Content-type": "application/json",
@@ -202,15 +203,15 @@ export const CreateNewPlant = ({ token }) => {
                   onClick={(evt) => {
                     evt.preventDefault()
                     const newPlant = {
-                      user_id: userId,
                       available: false,
                       plant_age: plant.plant_age,
                       plant_name: plant.plant_name,
                       plant_image: plant.plant_image,
                       new_plant_care: plant.new_plant_care
                     }
-                    addNewPlant(newPlant).then(parsedResponse => {careTipsPerPlant(parsedResponse)}).then(() => navigate("/myplants"))
-                  }}//***** need to make it so I can DOUBLE post to both sets!! */
+                    addNewPlant(newPlant).then(parsedResponse =>  {newPlantData = parsedResponse}).then(() => 
+                    {careTipsPerPlant(newPlantData)}).then(() => {plantTypesPerPlant(newPlantData)}).then(navigate("/myplants"))
+                  }}
                   className="btn btn-primary"
                 >
                   Add this new plant to your collection!
