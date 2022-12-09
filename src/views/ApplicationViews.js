@@ -15,7 +15,7 @@ export const ApplicationViews = ({ token }) => {
       <Route element={<Authorized token={token}/>} />
       <Route path="/" element={<AllPlants token={token} />}/>
       <Route path="/myPlants" element={<ViewMyPlants token={token} />}/>
-      <Route path="newplant" element={<CreateNewPlant token={token} />}/>
+      <Route path="/newPlant" element={<CreateNewPlant token={token} />}/>
     </Routes>
   </>
 }

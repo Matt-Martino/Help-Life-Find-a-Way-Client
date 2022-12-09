@@ -41,7 +41,7 @@ export const CreateNewPlant = ({ token }) => {
         chosenCareTips.forEach((careTip) => {
           const CareTipToAPI = {
             plant: parsedResponse.id,
-            care_tip: parseInt(careTip),
+            care_tip: careTip,
           };
           fetch(`http://localhost:8000/plantCareTips`, {
             method: "POST",
@@ -58,7 +58,7 @@ export const CreateNewPlant = ({ token }) => {
         chosenPlantTypes.forEach((plantType) => {
           const PlantTypeToAPI = {
             plant: parsedResponse.id,
-            plant_type: parseInt(plantType),
+            plant_type: plantType,
           };
           fetch(`http://localhost:8000/userPlantPlantTypes`, {
             method: "POST",
@@ -210,7 +210,7 @@ export const CreateNewPlant = ({ token }) => {
                       new_plant_care: plant.new_plant_care
                     }
                     addNewPlant(newPlant).then(parsedResponse =>  {newPlantData = parsedResponse}).then(() => 
-                    {careTipsPerPlant(newPlantData)}).then(() => {plantTypesPerPlant(newPlantData)}).then(navigate("/myplants"))
+                    {careTipsPerPlant(newPlantData)}).then(() => {plantTypesPerPlant(newPlantData)}).then(navigate("/myPlants"))
                   }}
                   className="btn btn-primary"
                 >
