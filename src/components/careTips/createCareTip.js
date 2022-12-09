@@ -66,7 +66,7 @@ export const CreateCareTip = () => {
                         plant_tip_label: careTipToBeMade.plant_tip_label,
                         description_of_tip: careTipToBeMade.description_of_tip
                     }
-                    addNewCareTip(newCareTipToAPI).then(navigate("/myPlants"))
+                    addNewCareTip(newCareTipToAPI).then(navigate("/careTips"))
                   }}
                   className="btn btn-primary"
                 >

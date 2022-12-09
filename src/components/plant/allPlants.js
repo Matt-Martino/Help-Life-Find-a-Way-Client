@@ -6,7 +6,6 @@ import { AllPlantsSingleView } from "./allPlantSingleView"
 
 
 export const AllPlants = () => {
-    const navigate = useNavigate()
     const [allPlants, setAllPlants] = useState([])
 
 

@@ -1,8 +1,10 @@
 import { Route, Routes } from "react-router-dom"
 import { Login } from "../components/auth/Login"
 import { Register } from "../components/auth/Register"
+import { ViewAllCareTips } from "../components/careTips/allCareTips"
 import { CreateCareTip } from "../components/careTips/createCareTip"
 import { AllPlants } from "../components/plant/allPlants"
+import { AllPlantsSingleView } from "../components/plant/allPlantSingleView"
 import { CreateNewPlant } from "../components/plant/createNewPlant"
 import { ViewMyPlants } from "../components/plant/myPlants"
 import { Authorized } from "./Authorized"
@@ -18,6 +20,8 @@ export const ApplicationViews = ({ token }) => {
       <Route path="/myPlants" element={<ViewMyPlants token={token} />}/>
       <Route path="/newPlant" element={<CreateNewPlant token={token} />}/>
       <Route path="/createCareTip" element={<CreateCareTip />}/>
+      <Route path="/careTips" element={<ViewAllCareTips />}/>
+      <Route path="/plants/:pantId" element={<AllPlantsSingleView />}/>
     </Routes>
   </>
 }
