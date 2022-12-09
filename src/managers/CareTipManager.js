@@ -18,3 +18,31 @@ export const addNewCareTip = (careTip) => {
         
     }).then(res => res.json())
     }
+
+export const getAllCareTipsForOnePlant = (plantId) => {
+    return fetch(`http://localhost:8000/careTips?plant=${plantId}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("help_token")}`
+        }
+    })
+        .then(res => res.json())
+    }
+
+
+export const getCareTipsForSpecificPlant = (plantId) => {
+    return fetch(`http://localhost:8000/plantCareTips?plant=${plantId}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("help_token")}`
+        }
+    })
+        .then(res => res.json())
+    }
+
+export const deletePlantCareTip = (plantCareTipId) => {
+    return fetch(`http://localhost:8000/plantCareTips/${plantCareTipId}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("help_token")}`
+        }
+    })
+    }
