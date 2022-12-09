@@ -6,14 +6,12 @@ import { getAllPlantTypes } from "../../managers/PlantTypeManager"
 
 
 
-export const CreateNewPlant = ({ token }) => {
+export const CreateNewPlant = () => {
     const navigate = useNavigate()
     let newPlantData = ""
-    const userId = token
     const [allCareTips, setAllCareTips] = useState([])
     const [allPlantTypes, setAllPlantTypes] = useState([])
     const [plant, setNewPlantDetails] = useState({
-        available: false,
         new_plant_care: "",
         plant_age: "",
         plant_name: "",
@@ -24,17 +22,17 @@ export const CreateNewPlant = ({ token }) => {
 
     useEffect(() => {
         getAllCareTips().then((CareTipData) => setAllCareTips(CareTipData));
-    }, []);
+    }, [])
 
     useEffect(() => {
         getAllPlantTypes().then((plantTypeData) => setAllPlantTypes(plantTypeData));
-    }, []);
+    }, [])
 
 
     const changePlantState = (domEvent) => {
-        const copy = { ...plant };
-        copy[domEvent.target.id] = domEvent.target.value;
-        setNewPlantDetails(copy);
+        const copy = { ...plant }
+        copy[domEvent.target.id] = domEvent.target.value
+        setNewPlantDetails(copy)
       }
 
       const careTipsPerPlant = (parsedResponse) => {

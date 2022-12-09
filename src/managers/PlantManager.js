@@ -36,3 +36,24 @@ export const addNewPlant = (plant) => {
         
     }).then(res => res.json())
     }
+
+export const getSinglePlant = (plantId) => {
+    return fetch(`http://localhost:8000/plants/${plantId}`, {
+    headers:{
+        "Authorization": `Token ${localStorage.getItem("help_token")}`
+    }
+})
+    .then(res => res.json())
+    }
+
+export const UpdatePlantInfo = (plant) => {
+    return fetch(`http://localhost:8000/plants/${plant.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("help_token")}`
+        },
+        body: JSON.stringify(plant)
+        
+    }).then(res => res.json())
+    }

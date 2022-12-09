@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { deletePlant, getPlantsByUserId } from "../../managers/PlantManager"
 
 
 
-export const ViewMyPlants = ({ token }) => {
+export const ViewMyPlants = () => {
   const [plants, setPlants] = useState([])
-  const navigate = useNavigate()
   useEffect(() => {
     getPlantsByUserId().then((plantData) => setPlants(plantData))
 
@@ -30,7 +29,7 @@ export const ViewMyPlants = ({ token }) => {
 
   const makeDeleteRequest = (plantId) => {
     deletePlant(plantId).then(() => {
-      getPlantsByUserId(token)
+      getPlantsByUserId()
     })
   }
 
