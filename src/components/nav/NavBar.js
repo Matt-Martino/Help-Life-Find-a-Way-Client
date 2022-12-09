@@ -15,7 +15,7 @@ export const NavBar = ({ token, setToken }) => {
             <Link to="/newPlant" className="navbar-item">Add New Plant</Link>
             <Link to="/users" className="navbar-item">All Users</Link>
             <Link to="/available" className="navbar-item">Available Plants</Link>
-            <Link to="/tips" className="navbar-item">Create Care Tip</Link>
+            <Link to="/createCareTip" className="navbar-item">Create Care Tip</Link>
             </>
             <button className="nav-link fakeLink"
               onClick={() => {
