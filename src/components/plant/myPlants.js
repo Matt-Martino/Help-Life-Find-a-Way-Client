@@ -8,7 +8,7 @@ export const ViewMyPlants = ({ token }) => {
     const [plants, setPlants] = useState([])
 
     useEffect(() => {
-        getPlantsByUserId(token).then((plantData) => setPlants(plantData))
+        getPlantsByUserId().then((plantData) => setPlants(plantData))
 
     }, [])
 
@@ -90,7 +90,7 @@ export const ViewMyPlants = ({ token }) => {
                     <br></br>
                     <br></br>
                   </>
-                  : <> <h1 className="title">You have currently have No Plants.</h1>
+                  : <> <h1 className="title">You have currently have No Plants bitch.</h1>
                     </>
               )
             }

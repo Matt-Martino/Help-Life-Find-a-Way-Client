@@ -12,7 +12,7 @@ export const NavBar = ({ token, setToken }) => {
             <>
             <Link to="/" className="navbar-item">Home</Link>
             <Link to="/myPlants" className="navbar-item">My Plants</Link>
-            <Link to="/newplant" className="navbar-item">Add New Plant</Link>
+            <Link to="/newPlant" className="navbar-item">Add New Plant</Link>
             <Link to="/users" className="navbar-item">All Users</Link>
             <Link to="/available" className="navbar-item">Available Plants</Link>
             <Link to="/tips" className="navbar-item">Create Care Tip</Link>
