@@ -10,7 +10,7 @@ export const AllPlantsSingleView = ({ id, username, available, new_plant_care, p
 
             <div className="columns">
                 <div className="column level">
-                    <Link className="level-item" to={`/plant/${id}`} >{plant_name}</Link>
+                    <Link className="level-item" to={`/plants/${id}`} >{plant_name}</Link>
                 </div>
                 <div className="column level">
                     <div className="level-item">{username}</div>

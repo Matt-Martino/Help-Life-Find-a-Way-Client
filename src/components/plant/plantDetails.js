@@ -18,19 +18,19 @@ export const PlantDetails = () => {
 
     return <>
         <section>
-
+      
             <div className="columns">
                 <div className="column level">
-                    <div className="level-item">Username:{thePlant?.user?.username}</div>
+                    <div className="level-item">Username: {thePlant?.user?.username}</div>
                 </div>
                 <div className="column level">
-                    <div className="level-item">Plant pic:{thePlant.plant_image}</div>
+                    <div className="level-item">Plant pic: {thePlant.plant_image}</div>
                 </div>
                 <div className="column level">
-                    <span className="level-item">Plant name:{thePlant.plant_name}</span>
+                    <span className="level-item">Plant name: {thePlant.plant_name}</span>
                 </div>
                 <div className="column level">
-                    <span className="level-item">New plant care:{thePlant.new_plant_care}</span>
+                    <span className="level-item">New plant care: {thePlant.new_plant_care}</span>
                 </div>
 
                 <div className="column level">

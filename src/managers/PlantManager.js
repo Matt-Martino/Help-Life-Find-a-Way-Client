@@ -7,8 +7,17 @@ export const getAllPlants = () => {
     .then(res => res.json())
     }
 
-export const getPlantsByUserId = () => {
+export const getCurrentLoggedInUsersPlants = () => {
     return fetch(`http://localhost:8000/plants?myPlants`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("help_token")}`
+        }
+    })
+        .then(res => res.json())
+    }
+
+export const getPlantsByUserId = (userId) => {
+    return fetch(`http://localhost:8000/plants?user=${userId}`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("help_token")}`
         }

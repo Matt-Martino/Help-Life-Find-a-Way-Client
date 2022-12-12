@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { deletePlant, getPlantsByUserId } from "../../managers/PlantManager"
+import { deletePlant, getCurrentLoggedInUsersPlants } from "../../managers/PlantManager"
 
 
 
 export const ViewMyPlants = () => {
   const [plants, setPlants] = useState([])
+
   useEffect(() => {
-    getPlantsByUserId().then((plantData) => setPlants(plantData))
+    getCurrentLoggedInUsersPlants().then((plantData) => setPlants(plantData))
 
   }, [])
 
@@ -29,7 +30,7 @@ export const ViewMyPlants = () => {
 
   const makeDeleteRequest = (plantId) => {
     deletePlant(plantId).then(() => {
-      getPlantsByUserId()
+      getCurrentLoggedInUsersPlants()
     })
   }
 
@@ -57,7 +58,7 @@ export const ViewMyPlants = () => {
                                 </div>
                                 <div className="media-content">
                                   <div>
-                                    <p className="title is-4">{plant.user?.full_name}</p>
+                                    <p className="title is-4"> {plant.user?.full_name}</p>
                                   </div>
                                 </div>
                               </div>

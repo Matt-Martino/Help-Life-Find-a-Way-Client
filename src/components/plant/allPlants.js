@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { getAllPlants } from "../../managers/PlantManager"
 import { AllPlantsSingleView } from "./allPlantSingleView"
 
@@ -23,7 +22,7 @@ export const AllPlants = () => {
               <section className="box">
                 {allPlants.map((plant) => (
                 <AllPlantsSingleView
-                key={`plant--${plant.id}`}
+                key={`plants--${plant.id}`}
                 username={plant.user.username}
                 available={plant.available}
                 new_plant_care={plant.new_plant_care}
