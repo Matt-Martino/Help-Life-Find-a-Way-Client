@@ -16,4 +16,3 @@ export const getAllPlantTypesForOnePlant = (plantId) => {
         .then(res => res.json())
     }
 
-    
