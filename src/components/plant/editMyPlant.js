@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import { deletePlantCareTip, getAllCareTips, getCareTipsForSpecificPlant } from "../../managers/CareTipManager"
+import { useNavigate, useParams } from "react-router-dom"
+import { getAllCareTips } from "../../managers/CareTipManager"
+import { addNewPlantCareTips, deletePlantCareTip, getCareTipsForSpecificPlant } from "../../managers/PlantCareTipManager"
 import { getSinglePlant, UpdatePlantInfo } from "../../managers/PlantManager"
+import { addNewUserPlantPlantTypes, deletePlantType, getPlantTypesForSpecificPlant } from "../../managers/UserPlantPlantTypeManager"
 import { getAllPlantTypes } from "../../managers/PlantTypeManager"
 
 
@@ -9,6 +11,7 @@ import { getAllPlantTypes } from "../../managers/PlantTypeManager"
 
 export const EditCurrentPlant = () => {
     const { plantId } = useParams()
+    const navigate = useNavigate()
     const [plant, setThePlant] = useState({
         id: "",
         available: false,
@@ -36,10 +39,11 @@ export const EditCurrentPlant = () => {
 
     useEffect(() => {
         getCareTipsForSpecificPlant(plantId).then((data) => setPreviousCareTips(data))
-    }, [plant])
+    }, [plantId])
+
     useEffect(() => {
-        setPreviousPlantTypes(plant.plant_types)
-    }, [plant])
+        getPlantTypesForSpecificPlant(plantId).then((data) => setPreviousPlantTypes(data))
+    }, [plantId])
 
 
     useEffect(() => {
@@ -56,6 +60,25 @@ export const EditCurrentPlant = () => {
         setThePlant(copy)
     }
 
+    const careTipsPerPlant = (plantId) => {
+        chosenCareTips.forEach((careTip) => {
+            const CareTipToAPI = {
+                plant: plantId,
+                care_tip: careTip,
+            }
+            addNewPlantCareTips(CareTipToAPI)
+        })
+    }
+
+    const plantTypesPerPlant = (plantId) => {
+        chosenPlantTypes.forEach((plantType) => {
+            const PlantTypeToAPI = {
+                plant: plantId,
+                plant_type: plantType,
+            }
+            addNewUserPlantPlantTypes(PlantTypeToAPI)
+        })
+    }
 
     return (
         <>
@@ -150,40 +173,11 @@ export const EditCurrentPlant = () => {
                         </label>
                     </div>
                 </div>
-
-{/*                       // FRIDAY NIGHT NOTES!
-
-                                                This works!
-
-                                                But...
-                                                I need test more.
-                                                Need to make one similar for the plant types.
-                                                THis will give the users some options to remove stuff that is listed while
-                                                still adding to it with the checkboxes
-
-                                                TODO!!!
-
-                                                Need to do a check so they can't add the same tip / plant type to the
-                                                database if it exists 
-
-  */}
-
-
                 <div className="column level">
                     <span className="level-item">Current plant care tips:{previousCareTips.map(tip => {
-                        return  <button onClick={() => {deletePlantCareTip(tip.id)}}>Tip: {tip?.care_tip?.plant_tip_label}</button>                        
+                        return <button onClick={() => { deletePlantCareTip(tip.id) }}>Tip: {tip?.care_tip?.plant_tip_label}</button>
                     })}</span>
                 </div>
-
-
-
-
-                {/* <div className="column level">
-                    <span className="level-item">Current plant care tips:{plant?.plant_type?.map((type) => {
-                        return <div> Tip: {type.plant_type}</div>
-                    })}</span>
-                </div> */}
-
                 <div class="field ">
                     <label class="label">Add more plant types</label>
                     <div class="control">
@@ -214,6 +208,11 @@ export const EditCurrentPlant = () => {
                         </label>
                     </div>
                 </div>
+                <div className="column level">
+                    <span className="level-item">Current plant types:{previousPlantTypes.map((type) => {
+                        return <button onClick={() => { deletePlantType(type.id) }}>Type: {type?.plant_type?.plant_type}</button>
+                    })}</span>
+                </div>
                 <div class="field is-grouped">
                     <div class="control">
                         <button
@@ -229,6 +228,8 @@ export const EditCurrentPlant = () => {
                                     new_plant_care: plant.new_plant_care
                                 }
                                 { UpdatePlantInfo(updatedPlant) }
+                                { careTipsPerPlant(plantId) }
+                                { plantTypesPerPlant(plantId) }
                             }}
                             className="btn btn-primary"
                         >
@@ -236,7 +237,7 @@ export const EditCurrentPlant = () => {
                         </button>
                     </div>
                     <div class="control">
-                        <button class="button is-link is-light">Cancel</button>
+                        <button onClick={() => navigate("/myPlants")} class="button is-link is-light">Cancel</button>
                     </div>
                 </div>
             </div>

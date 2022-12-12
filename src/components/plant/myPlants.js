@@ -17,7 +17,7 @@ export const ViewMyPlants = () => {
     return <>
       <button className="button is-small is-danger is-focused"
         onClick={() => {
-          if (window.confirm('Are you sure you want to delete this plant?')) {
+          if (window.confirm('Sorry for your loss')) {
             makeDeleteRequest(plantId)
           }
         }}
@@ -83,7 +83,7 @@ export const ViewMyPlants = () => {
                 <br></br>
                 <br></br>
               </>
-              : <> <h1 className="title">You have currently have No Plants bitch.</h1>
+              : <> <h1 className="title">You have currently have No Plants.</h1>
               </>
           )
         }
