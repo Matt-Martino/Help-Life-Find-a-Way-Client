@@ -8,7 +8,6 @@ import { getAllPlantTypes } from "../../managers/PlantTypeManager"
 
 
 
-
 export const EditCurrentPlant = () => {
     const { plantId } = useParams()
     const navigate = useNavigate()
@@ -79,6 +78,8 @@ export const EditCurrentPlant = () => {
             addNewUserPlantPlantTypes(PlantTypeToAPI)
         })
     }
+    
+
 
     return (
         <>
@@ -113,21 +114,8 @@ export const EditCurrentPlant = () => {
                         />
                     </div>
                 </div>
-                <div class="field">
-                    <label class="label">plant image **make so you can upload an image**</label>
-                    <div class="">
-                        <input
-                            class="input is-success"
-                            type="text"
-                            id="plant_image"
-                            required
-                            autoFocus
-                            placeholder="Text input"
-                            value={plant.plant_image}
-                            onChange={changePlantState}
-                        />
-                    </div>
-                </div>
+
+
                 <div class="field">
                     <label class="label">New Plant Care</label>
                     <div class="control">
@@ -230,6 +218,7 @@ export const EditCurrentPlant = () => {
                                 { UpdatePlantInfo(updatedPlant) }
                                 { careTipsPerPlant(plantId) }
                                 { plantTypesPerPlant(plantId) }
+                                { navigate("/myPlants") }
                             }}
                             className="btn btn-primary"
                         >

@@ -16,7 +16,8 @@ export const AllPlantsSingleView = ({ id, username, available, new_plant_care, p
                     <div className="level-item">{username}</div>
                 </div>
                 <div className="column level">
-                    <div className="level-item">{plant_image}</div>
+                    <img src={plant_image}></img>
+                    
                 </div>
                 <div className="column level">
                     <span className="level-item">{plant_name}</span>
