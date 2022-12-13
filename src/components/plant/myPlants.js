@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import { deletePlant, getCurrentLoggedInUsersPlants } from "../../managers/PlantManager"
 
 
 
 export const ViewMyPlants = () => {
+  const navigate = useNavigate()
   const [plants, setPlants] = useState([])
 
   useEffect(() => {
@@ -30,8 +31,7 @@ export const ViewMyPlants = () => {
 
   const makeDeleteRequest = (plantId) => {
     deletePlant(plantId).then(() => {
-      getCurrentLoggedInUsersPlants()
-    })
+      window.location.reload(false)})
   }
 
 
