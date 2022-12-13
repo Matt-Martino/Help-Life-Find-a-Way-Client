@@ -37,7 +37,7 @@ export const ViewSpecificUsersPlants = () => {
                                                                 <span className="level-item">Plant name: {plant.plant_name}</span>
                                                             </div>
                                                             <div className="column level">
-                                                                <div className="level-item">Plant pic: {plant.plant_image}</div>
+                                                            <img src={plant.plant_image} className="uploaded_image" />
                                                             </div>
                                                             <div className="column level">
                                                                 <span className="level-item">New plant care: {plant.new_plant_care}</span>
