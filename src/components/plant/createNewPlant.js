@@ -5,7 +5,7 @@ import { addNewPlantCareTips } from "../../managers/PlantCareTipManager"
 import { addNewPlant } from "../../managers/PlantManager"
 import { getAllPlantTypes } from "../../managers/PlantTypeManager"
 import { addNewUserPlantPlantTypes } from "../../managers/UserPlantPlantTypeManager"
-
+import Axios from "axios"
 
 
 export const CreateNewPlant = () => {
@@ -13,6 +13,8 @@ export const CreateNewPlant = () => {
   let newPlantData = ""
   const [allCareTips, setAllCareTips] = useState([])
   const [allPlantTypes, setAllPlantTypes] = useState([])
+  const [selectedImage, setImage] = useState()
+  const [savedImage, setSavedImage] = useState("")
   const [plant, setNewPlantDetails] = useState({
     new_plant_care: "",
     plant_age: "",
@@ -57,7 +59,20 @@ export const CreateNewPlant = () => {
     })
   }
 
+  const saveImageClick = (event) => {
+    event.preventDefault()
 
+    uploadImage()
+      .then((response) => { setSavedImage(response.data.url) })
+  }
+
+  const uploadImage = () => {
+    const formData = new FormData()
+    formData.append("file", selectedImage)
+    formData.append("upload_preset", "shgfdsfhd")
+
+    return Axios.post("https://api.cloudinary.com/v1_1/dm0vsswx2/image/upload", formData)
+  }
 
 
 
@@ -93,20 +108,19 @@ export const CreateNewPlant = () => {
               onChange={changePlantState}
             />
           </div>
-        </div>
-        <div class="field">
-          <label class="label">plant image **make so you can upload an image**</label>
-          <div class="">
-            <input
-              class="input is-success"
-              type="text"
-              id="plant_image"
-              required
-              autoFocus
-              placeholder="Text input"
-              value={plant.plant_image}
-              onChange={changePlantState}
-            />
+          <div>
+            <input className="btn btn-primary"
+              type="file"
+              onChange={(event) => {
+                setImage(event.target.files[0]);
+              }}
+
+            >
+            </input>
+          </div>
+          <div>
+            <button className="btn btn-primary" onClick={(clickEvent) => { saveImageClick(clickEvent) }}
+            >Upload Image</button>
           </div>
         </div>
         <div class="field">
@@ -192,7 +206,7 @@ export const CreateNewPlant = () => {
                   available: false,
                   plant_age: plant.plant_age,
                   plant_name: plant.plant_name,
-                  plant_image: plant.plant_image,
+                  plant_image: savedImage,
                   new_plant_care: plant.new_plant_care
                 }
                 addNewPlant(newPlant).then(parsedResponse => { newPlantData = parsedResponse }).then(() => { careTipsPerPlant(newPlantData) }).then(() => { plantTypesPerPlant(newPlantData) }).then(navigate("/myPlants"))

@@ -6,6 +6,7 @@ import { getSinglePlant } from "../../managers/PlantManager"
 
 export const PlantDetails = () => {
     const { plantId } = useParams()
+    const loggedInUsername = (localStorage.getItem("username"))
     const navigate = useNavigate()
     const [thePlant, getThePlant] = useState({})
 
@@ -24,7 +25,7 @@ export const PlantDetails = () => {
                     <div className="level-item">Username: {thePlant?.user?.username}</div>
                 </div>
                 <div className="column level">
-                    <div className="level-item">Plant pic: {thePlant.plant_image}</div>
+                   <img src={thePlant.plant_image} className="uploaded_image" /> 
                 </div>
                 <div className="column level">
                     <span className="level-item">Plant name: {thePlant.plant_name}</span>
@@ -45,9 +46,13 @@ export const PlantDetails = () => {
                     })}</span>
                 </div>
             </div>
-            <button
+            {
+                (thePlant?.user?.username == loggedInUsername)
+            ?<button
                 onClick={() => { navigate({ pathname: `/plants/${plantId}/edit` }) }}
             > Edit plant details</button>
+            :""
+            }
 
 
         </section>

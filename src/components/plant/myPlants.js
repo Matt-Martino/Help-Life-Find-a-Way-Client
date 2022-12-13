@@ -54,7 +54,7 @@ export const ViewMyPlants = () => {
                             <div className="column">
                               <div className="media">
                                 <div className="media-left">
-
+                                <img src={plant.plant_image} className="uploaded_image" />
                                 </div>
                                 <div className="media-content">
                                   <div>
