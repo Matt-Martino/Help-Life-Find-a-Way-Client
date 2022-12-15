@@ -57,8 +57,6 @@ export const ViewMyPlants = () => {
               <div className="level">
                 <div className="columns level-item">
                   <div className="card column is-three-quarters">
-                    <div className="card-image">
-                    </div>
                     <div className="card-content">
                       <div className="columns">
                         <div className="column">
