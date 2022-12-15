@@ -78,7 +78,7 @@ export const EditCurrentPlant = () => {
             addNewUserPlantPlantTypes(PlantTypeToAPI)
         })
     }
-    
+
 
 
     return (

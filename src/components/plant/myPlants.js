@@ -27,6 +27,19 @@ export const ViewMyPlants = () => {
       </button>
     </>
   }
+  const clonePlantButton = (plantId) => {
+    return <>
+      <button className="button is-small is-info is-focused"
+        onClick={() => {
+          if (window.confirm('Clone your plant, and make it available for adoption?')) {
+            makeDeleteRequest(plantId)
+          }
+        }}
+      >Clone plant and make available.
+        <i className="fa-solid fa-trash-can"></i>
+      </button>
+    </>
+  }
 
   const makeDeleteRequest = (plantId) => {
     deletePlant(plantId).then(() => {
@@ -66,6 +79,7 @@ export const ViewMyPlants = () => {
                               <Link to={`/plants/${plant.id}`}>
                                 {plant.plant_name}.
                               </Link>
+                              {clonePlantButton(plant.id)}
                               {deletePlantButton(plant.id)}
                             </div>
                           </div>
