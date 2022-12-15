@@ -4,6 +4,7 @@ import { Register } from "../components/auth/Register"
 import { ViewAllCareTips } from "../components/careTips/allCareTips"
 import { CreateCareTip } from "../components/careTips/createCareTip"
 import { AllPlants } from "../components/plant/allPlants"
+import { AvailablePlants } from "../components/plant/availablePlants"
 import { CreateNewPlant } from "../components/plant/createNewPlant"
 import { EditCurrentPlant } from "../components/plant/editMyPlant"
 import { ViewMyPlants } from "../components/plant/myPlants"
@@ -28,6 +29,7 @@ export const ApplicationViews = () => {
       <Route path="/plants/:plantId/edit" element={<EditCurrentPlant />}/>
       <Route path="/users" element={<ViewAllUsers />}/>
       <Route path="/plants/user/:userId" element={<ViewSpecificUsersPlants />}/>
+      <Route path="/available" element={<AvailablePlants />} />
     </Routes>
   </>
 }
