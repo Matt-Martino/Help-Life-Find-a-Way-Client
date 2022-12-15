@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { deletePlant, getCurrentLoggedInUsersPlants } from "../../managers/PlantManager"
+import { ClonePlant } from "./clonePlant"
 
 
 
 export const ViewMyPlants = () => {
   const [plants, setPlants] = useState([])
-
+  const [check, setCheck] = useState({})
   useEffect(() => {
     getCurrentLoggedInUsersPlants().then((plantData) => setPlants(plantData))
 
@@ -27,18 +28,20 @@ export const ViewMyPlants = () => {
       </button>
     </>
   }
-  const clonePlantButton = (plantId) => {
+
+  const clonePlantButton = (plant) => {
     return <>
       <button className="button is-small is-info is-focused"
-        onClick={() => {
-          if (window.confirm('Clone your plant, and make it available for adoption?')) {
-            makeDeleteRequest(plantId)
-          }
-        }}
+        onClick={() => { makeCloneRequest(plant) }}
       >Clone plant and make available.
-        <i className="fa-solid fa-trash-can"></i>
       </button>
     </>
+  }
+
+  const makeCloneRequest = (plant) => {
+    console.log(plant)
+    ClonePlant(plant)
+    
   }
 
   const makeDeleteRequest = (plantId) => {
@@ -77,7 +80,7 @@ export const ViewMyPlants = () => {
                               <Link to={`/plants/${plant.id}`}>
                                 {plant.plant_name}.
                               </Link>
-                              {clonePlantButton(plant.id)}
+                              {clonePlantButton(plant)}
                               {deletePlantButton(plant.id)}
                             </div>
                           </div>
@@ -88,8 +91,8 @@ export const ViewMyPlants = () => {
                 </div>
               </div>
             </div>
-            </section>
-          
+          </section>
+
 
         )
       }
