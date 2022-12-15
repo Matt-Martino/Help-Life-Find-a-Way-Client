@@ -18,38 +18,28 @@ export const ViewAllCareTips = () => {
             Create a new care tip
         </button>
 
-        <div style={{ margin: "0rem 3rem" }}>
-            <section className="section">
-                <div className="container">
-                    <div className="columns">
-                        <div className="column">
-                            <h1>Care tips and their descriptions</h1>
-                            <section className="section">
-                                <article className="tipList">
-                                    {
-                                        allCareTips.map(careTip => {
-                                            return (
-                                                <>
-                                                    <div className="container">
-                                                        <div className="columns">
-                                                            <div className="column"></div>
-                                                            <div> {careTip.plant_tip_label}</div>
-                                                            <div> {careTip.description_of_tip}</div>
-                                                        </div>
-                                                    </div>
-                                                </>
-                                            )
-                                        })
+        <h1>Care tips and their descriptions</h1>
 
-                                    }
-                                </article>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-            </section >
+        <section className="section">
+            <article className="tipList">
+                <div style={{ margin: "0rem 3rem" }}>
+                    {
+                        allCareTips.map(careTip => {
+                            return (
+                                <>
+                                    <div className="container">
+                                        <div className="columns">
+                                            <div className="column"> {careTip.plant_tip_label}</div>
+                                            <div className="column"> {careTip.description_of_tip}</div>
+                                        </div>
+                                    </div>
+                                </>
+                            )
+                        })
 
-        </div >
+                    }
+                </div >
+            </article>
+        </section>
     </>
-
 }

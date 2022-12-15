@@ -11,15 +11,11 @@ export const AllPlantsSingleView = ({ id, username, available, new_plant_care, p
             <div className="columns">
                 <div className="column level">
                     <Link className="level-item" to={`/plants/${id}`} >{plant_name}</Link>
-                </div>
-                <div className="column level">
+                
                     <div className="level-item">{username}</div>
-                </div>
-                <div className="column level">
+                
                     <img src={plant_image}></img>
                     
-                </div>
-                <div className="column level">
                     <span className="level-item">{plant_name}</span>
                 </div>
             </div>

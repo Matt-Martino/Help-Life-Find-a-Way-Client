@@ -32,6 +32,12 @@ export const EditCurrentPlant = () => {
     useEffect(() => {
         getSinglePlant(plantId).then((singlePlant) => {
             setThePlant(singlePlant)
+            for (const careTip of singlePlant.care_tips){
+                chosenCareTips.add(careTip.id)
+            }
+            for (const plantType of singlePlant.plant_types){
+                chosenPlantTypes.add(plantType.id)
+            }
         })
     }, [plantId])
 
@@ -59,7 +65,7 @@ export const EditCurrentPlant = () => {
         setThePlant(copy)
     }
 
-    const careTipsPerPlant = (plantId) => {
+    const POSTcareTipsPerPlant = (plantId) => {
         chosenCareTips.forEach((careTip) => {
             const CareTipToAPI = {
                 plant: plantId,
@@ -69,7 +75,7 @@ export const EditCurrentPlant = () => {
         })
     }
 
-    const plantTypesPerPlant = (plantId) => {
+    const POSTplantTypesPerPlant = (plantId) => {
         chosenPlantTypes.forEach((plantType) => {
             const PlantTypeToAPI = {
                 plant: plantId,
@@ -78,158 +84,169 @@ export const EditCurrentPlant = () => {
             addNewUserPlantPlantTypes(PlantTypeToAPI)
         })
     }
-    
 
 
     return (
         <>
-            <div className="container">
-                <div class="field">
-                    <label class="label">Plant Age</label>
-                    <div class="control">
-                        <input
-                            class="input is-success"
-                            type="text"
-                            id="plant_age"
-                            required
-                            autoFocus
-                            placeholder="Text input"
-                            value={plant.plant_age}
-                            onChange={changePlantState}
-                        />
+            <section>
+                <div className="container">
+                    <div class="field">
+                        <label class="label">Plant Age</label>
+                        <div class="control">
+                            <input
+                                class="input is-success"
+                                type="text"
+                                id="plant_age"
+                                required
+                                autoFocus
+                                placeholder="Text input"
+                                value={plant.plant_age}
+                                onChange={changePlantState}
+                            />
+                        </div>
                     </div>
-                </div>
-                <div class="field">
-                    <label class="label">plant name</label>
-                    <div class="">
-                        <input
-                            class="input is-success"
-                            type="text"
-                            id="plant_name"
-                            required
-                            autoFocus
-                            placeholder="Text input"
-                            value={plant.plant_name}
-                            onChange={changePlantState}
-                        />
+                    <div class="field">
+                        <label class="label">plant name</label>
+                        <div class="">
+                            <input
+                                class="input is-success"
+                                type="text"
+                                id="plant_name"
+                                required
+                                autoFocus
+                                placeholder="Text input"
+                                value={plant.plant_name}
+                                onChange={changePlantState}
+                            />
+                        </div>
                     </div>
-                </div>
 
 
-                <div class="field">
-                    <label class="label">New Plant Care</label>
-                    <div class="control">
-                        <textarea
-                            class="textarea"
-                            id="new_plant_care"
-                            required
-                            autoFocus
-                            placeholder="Textarea"
-                            value={plant.new_plant_care}
-                            onChange={changePlantState}
-                        ></textarea>
+                    <div class="field">
+                        <label class="label">New Plant Care</label>
+                        <div class="control">
+                            <textarea
+                                class="textarea"
+                                id="new_plant_care"
+                                required
+                                autoFocus
+                                placeholder="Textarea"
+                                value={plant.new_plant_care}
+                                onChange={changePlantState}
+                            ></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="field ">
-                    <label class="label">Add more plant care tips</label>
-                    <div class="control">
-                        <label class="checkbox">
-                            {allCareTips.map((careTip) => {
-                                return (
-                                    <>
-                                        <label htmlFor="addTags" className="tagLabel">
-                                            {careTip.plant_tip_label}
-                                        </label>
-                                        <input
-                                            type="checkbox"
-                                            className="addTags"
-                                            value={false}
-                                            onChange={() => {
-                                                const copy = new Set(chosenCareTips)
-                                                if (copy.has(careTip.id)) {
-                                                    copy.delete(careTip.id)
-                                                } else {
-                                                    copy.add(careTip.id)
-                                                }
-                                                setChosenCareTips(copy)
-                                            }}
-                                        />
-                                    </>
-                                );
-                            })}
-                        </label>
+                    <div class="field ">
+                        <label class="label">Add more plant care tips</label>
+                        <div class="control">
+                            <label class="checkbox">
+                                {allCareTips.map((careTip) => {
+                                    return (
+                                        <>
+                                            <label htmlFor="addTags" className="tagLabel">
+                                                {careTip.plant_tip_label}
+                                            </label>
+                                            <input
+                                                type="checkbox"
+                                                className="addTags"
+                                                value={false}
+                                                checked={chosenCareTips.has(careTip.id)}
+                                                defaultChecked={plant.care_tips.find(tip => tip.id === careTip.id) ? true : false}
+                                                onChange={() => {
+                                                    const copy = new Set(chosenCareTips)
+                                                    if (copy.has(careTip.id)) {
+                                                        copy.delete(careTip.id)
+                                                    } else {
+                                                        copy.add(careTip.id)
+                                                    }
+                                                    setChosenCareTips(copy)
+                                                }}
+                                            />
+                                        </>
+                                    );
+                                })}
+                            </label>
+                        </div>
+                    </div>
+                    <div className="column level">
+                        <span className="level-item">Current plant care tips attached to this plant.  Click to remove tips.: {previousCareTips.map(tip => {
+                            return <button onClick={() => deletePlantCareTip(tip.id).then(() => {
+                                window.location.reload(false)
+                            })}>Tip: {tip?.care_tip?.plant_tip_label}</button>
+                        })}</span>
+                    </div>
+                    <div class="field ">
+                        <label class="label">Add more plant types</label>
+                        <div class="control">
+                            <label class="checkbox">
+                                {allPlantTypes.map((plantType) => {
+                                    return (
+                                        <>
+                                            <label htmlFor="addTags" className="tagLabel">
+                                                {plantType.plant_type}
+                                            </label>
+                                            <input
+                                                type="checkbox"
+                                                className="addTags"
+                                                value={false}
+                                                checked={chosenPlantTypes.has(plantType.id)}
+                                                defaultChecked={plant.plant_types.find(type => type.id === plantType.id) ? true : false}
+                                                onChange={() => {
+                                                    const copy = new Set(chosenPlantTypes);
+                                                    if (copy.has(plantType.id)) {
+                                                        copy.delete(plantType.id);
+                                                    } else {
+                                                        copy.add(plantType.id);
+                                                    }
+                                                    setChosenPlantTypes(copy);
+                                                }}
+                                            />
+                                        </>
+                                    );
+                                })}
+                            </label>
+                        </div>
+                    </div>
+                    <div className="column level">
+                        <span className="level-item">Current plant types attached to this plant.  Click to remove types.:{previousPlantTypes.map((type) => {
+                            return <button onClick={() => {
+                                deletePlantType(type.id).then(() => {
+                                    window.location.reload(false)
+                                })
+                            }}>Type: {type?.plant_type?.plant_type}</button>
+                        })}</span>
+                    </div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button
+                                type="submit"
+                                onClick={(evt) => {
+                                    evt.preventDefault()
+                                    const updatedPlant = {
+                                        id: plant.id,
+                                        available: false,
+                                        plant_age: plant.plant_age,
+                                        plant_name: plant.plant_name,
+                                        plant_image: plant.plant_image,
+                                        new_plant_care: plant.new_plant_care
+                                    }
+                                    { UpdatePlantInfo(updatedPlant) }
+                                    { POSTcareTipsPerPlant(plantId) }
+                                    { POSTplantTypesPerPlant(plantId) }
+                                    { navigate("/myPlants") }
+                                }}
+                                className="btn btn-primary"
+                            >
+                                update this plants deets.
+                            </button>
+                        </div>
+                        <div class="control">
+                            <button onClick={() => navigate("/myPlants")} class="button is-link is-light">Cancel</button>
+                        </div>
                     </div>
                 </div>
-                <div className="column level">
-                    <span className="level-item">Current plant care tips:{previousCareTips.map(tip => {
-                        return <button onClick={() => { deletePlantCareTip(tip.id) }}>Tip: {tip?.care_tip?.plant_tip_label}</button>
-                    })}</span>
-                </div>
-                <div class="field ">
-                    <label class="label">Add more plant types</label>
-                    <div class="control">
-                        <label class="checkbox">
-                            {allPlantTypes.map((plantType) => {
-                                return (
-                                    <>
-                                        <label htmlFor="addTags" className="tagLabel">
-                                            {plantType.plant_type}
-                                        </label>
-                                        <input
-                                            type="checkbox"
-                                            className="addTags"
-                                            value={false}
-                                            onChange={() => {
-                                                const copy = new Set(chosenPlantTypes);
-                                                if (copy.has(plantType.id)) {
-                                                    copy.delete(plantType.id);
-                                                } else {
-                                                    copy.add(plantType.id);
-                                                }
-                                                setChosenPlantTypes(copy);
-                                            }}
-                                        />
-                                    </>
-                                );
-                            })}
-                        </label>
-                    </div>
-                </div>
-                <div className="column level">
-                    <span className="level-item">Current plant types:{previousPlantTypes.map((type) => {
-                        return <button onClick={() => { deletePlantType(type.id) }}>Type: {type?.plant_type?.plant_type}</button>
-                    })}</span>
-                </div>
-                <div class="field is-grouped">
-                    <div class="control">
-                        <button
-                            type="submit"
-                            onClick={(evt) => {
-                                evt.preventDefault()
-                                const updatedPlant = {
-                                    id: plant.id,
-                                    available: false,
-                                    plant_age: plant.plant_age,
-                                    plant_name: plant.plant_name,
-                                    plant_image: plant.plant_image,
-                                    new_plant_care: plant.new_plant_care
-                                }
-                                { UpdatePlantInfo(updatedPlant) }
-                                { careTipsPerPlant(plantId) }
-                                { plantTypesPerPlant(plantId) }
-                                { navigate("/myPlants") }
-                            }}
-                            className="btn btn-primary"
-                        >
-                            update this plants deets.
-                        </button>
-                    </div>
-                    <div class="control">
-                        <button onClick={() => navigate("/myPlants")} class="button is-link is-light">Cancel</button>
-                    </div>
-                </div>
-            </div>
+            </section>
         </>
     )
 }

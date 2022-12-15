@@ -44,8 +44,6 @@ export const ViewMyPlants = () => {
               <div className="level">
                 <div className="columns level-item">
                   <div className="card column is-three-quarters">
-                    <div className="card-image">
-                    </div>
                     <div className="card-content">
                       <div className="columns">
                         <div className="column">
@@ -56,17 +54,18 @@ export const ViewMyPlants = () => {
                             <div className="media-content">
                               <div>
                                 <p key={`plants--${plant.id}`} className="title is-4"> {plant.user?.full_name}</p>
+
+                                <div className="column">
+                                  <div className="content">
+                                    <div className="title is-3">
+                                      <Link to={`/plants/${plant.id}`}>
+                                        {plant.plant_name}.
+                                      </Link>
+                                      {deletePlantButton(plant.id)}
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="column">
-                          <div className="content">
-                            <div className="title is-3">
-                              <Link to={`/plants/${plant.id}`}>
-                                {plant.plant_name}.
-                              </Link>
-                              {deletePlantButton(plant.id)}
                             </div>
                           </div>
                         </div>
@@ -76,8 +75,8 @@ export const ViewMyPlants = () => {
                 </div>
               </div>
             </div>
-            </section>
-          
+          </section>
+
 
         )
       }
