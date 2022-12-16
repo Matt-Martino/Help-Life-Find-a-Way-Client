@@ -29,7 +29,7 @@ export const ApplicationViews = () => {
       <Route path="/plants/:plantId/edit" element={<EditCurrentPlant />}/>
       <Route path="/users" element={<ViewAllUsers />}/>
       <Route path="/plants/user/:userId" element={<ViewSpecificUsersPlants />}/>
-      <Route path="/available" element={<AvailablePlants />} />
+      <Route path="/plants/available" element={<AvailablePlants />} />
     </Routes>
   </>
 }

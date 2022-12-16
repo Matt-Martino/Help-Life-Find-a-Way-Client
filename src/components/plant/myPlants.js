@@ -7,7 +7,7 @@ import { ClonePlant } from "./clonePlant"
 
 export const ViewMyPlants = () => {
   const [plants, setPlants] = useState([])
-  const [check, setCheck] = useState({})
+
   useEffect(() => {
     getCurrentLoggedInUsersPlants().then((plantData) => setPlants(plantData))
 
@@ -32,16 +32,10 @@ export const ViewMyPlants = () => {
   const clonePlantButton = (plant) => {
     return <>
       <button className="button is-small is-info is-focused"
-        onClick={() => { makeCloneRequest(plant) }}
+        onClick={() => { ClonePlant(plant) }}
       >Clone plant and make available.
       </button>
     </>
-  }
-
-  const makeCloneRequest = (plant) => {
-    console.log(plant)
-    ClonePlant(plant)
-    
   }
 
   const makeDeleteRequest = (plantId) => {

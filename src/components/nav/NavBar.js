@@ -14,7 +14,7 @@ export const NavBar = () => {
             <Link to="/myPlants" className="navbar-item">My Plants</Link>
             <Link to="/newPlant" className="navbar-item">Add New Plant</Link>
             <Link to="/users" className="navbar-item">All Users</Link>
-            <Link to="/available" className="navbar-item">Available Plants</Link>
+            <Link to="/plants/available" className="navbar-item">Available Plants</Link>
             <Link to="/careTips" className="navbar-item">Care Tips</Link>
             
             <button className="nav-link fakeLink"
