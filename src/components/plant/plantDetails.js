@@ -37,11 +37,11 @@ export const PlantDetails = () => {
                                             <span className="level-item">New plant care: {thePlant.new_plant_care}</span>
 
                                             <span className="level-item">  {thePlant?.care_tips?.map(careTip => {
-                                                return <div> Care Tip:  {careTip.plant_tip_label}</div>
+                                                return <div key={`careTip--${careTip.id}`}> Care Tip:  {careTip.plant_tip_label}</div>
                                             })}</span>
 
-                                            <span className="level-item">  {thePlant?.plant_types?.map(plantTypes => {
-                                                return <div> Plant type: {plantTypes.plant_type}</div>
+                                            <span className="level-item">  {thePlant?.plant_types?.map(plantType => {
+                                                return <div key={`plantType--${plantType.id}`}> Plant type: {plantType.plant_type}</div>
                                             })}</span>
                                         </div>
                                     </div>

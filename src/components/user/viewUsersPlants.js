@@ -20,10 +20,9 @@ export const ViewSpecificUsersPlants = () => {
         <>
             <h1 className="title is-1 level-item">Plants</h1>
             {
-                userPlants.map(plant =>
+                userPlants.map(plant => 
                     userPlants.length > 0
-                        ? <>
-                            <div key={`plant--${plant.id}`}>
+                        ? <div key={`plant--${plant.id}`}>
                                 <div className="level">
                                     <div className="columns level-item">
                                         <div className="card column is-three-quarters">
@@ -31,7 +30,7 @@ export const ViewSpecificUsersPlants = () => {
                                             </div>
                                             <div className="card-content">
                                                 <div className="columns">
-                                                    <div className="column">
+                                                     <div className="column">
                                                         <div className="columns">
                                                             <div className="column level">
                                                                 <span className="level-item">Plant name: {plant.plant_name}</span>
@@ -53,12 +52,11 @@ export const ViewSpecificUsersPlants = () => {
                                             </div>
                                         </div>
                                     </div>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
                                 </div>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                            </>
                             : <> <h1 className="title">User has no plants.</h1>
                             </>
                             )
