@@ -25,11 +25,11 @@ export const CreateNewPlant = () => {
   const [chosenPlantTypes, setChosenPlantTypes] = useState(new Set())
 
   useEffect(() => {
-    getAllCareTips().then((CareTipData) => setAllCareTips(CareTipData));
+    getAllCareTips().then((CareTipData) => setAllCareTips(CareTipData))
   }, [])
 
   useEffect(() => {
-    getAllPlantTypes().then((plantTypeData) => setAllPlantTypes(plantTypeData));
+    getAllPlantTypes().then((plantTypeData) => setAllPlantTypes(plantTypeData))
   }, [])
 
 
@@ -114,7 +114,7 @@ export const CreateNewPlant = () => {
                 <input className="btn btn-primary"
                   type="file"
                   onChange={(event) => {
-                    setImage(event.target.files[0]);
+                    setImage(event.target.files[0])
                   }}
 
                 >
@@ -156,15 +156,15 @@ export const CreateNewPlant = () => {
                           onChange={(evt) => {
                             const copy = new Set(chosenCareTips);
                             if (copy.has(careTip.id)) {
-                              copy.delete(careTip.id);
+                              copy.delete(careTip.id)
                             } else {
-                              copy.add(careTip.id);
+                              copy.add(careTip.id)
                             }
-                            setChosenCareTips(copy);
+                            setChosenCareTips(copy)
                           }}
                         />
                       </div>
-                    );
+                    )
                   })}
                 </label>
               </div>
@@ -185,11 +185,11 @@ export const CreateNewPlant = () => {
                           onChange={(evt) => {
                             const copy = new Set(chosenPlantTypes);
                             if (copy.has(plantType.id)) {
-                              copy.delete(plantType.id);
+                              copy.delete(plantType.id)
                             } else {
-                              copy.add(plantType.id);
+                              copy.add(plantType.id)
                             }
-                            setChosenPlantTypes(copy);
+                            setChosenPlantTypes(copy)
                           }}
                         />
                       </div>
@@ -226,6 +226,5 @@ export const CreateNewPlant = () => {
         </div>
       </div>
     </section>
-
   )
 }

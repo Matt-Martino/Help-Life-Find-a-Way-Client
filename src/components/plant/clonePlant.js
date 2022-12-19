@@ -41,7 +41,6 @@ export const ClonePlant = (plant) => {
                         () => { plantTypesPerPlant(newPlantData) }).then(
                             () => {window.location.reload(false)})}
             </div>
-
         </>
     )
 }

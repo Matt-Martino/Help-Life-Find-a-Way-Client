@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 
 
-export const AllPlantsSingleView = ({ id, username, available, new_plant_care, plant_age, plant_name, plant_image, care_tips, plant_types }) => {
+export const AllPlantsSingleView = ({ id, username, plant_name, plant_image }) => {
 
     return <>
         <section>

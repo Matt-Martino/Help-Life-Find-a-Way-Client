@@ -52,11 +52,11 @@ export const EditCurrentPlant = () => {
 
 
     useEffect(() => {
-        getAllCareTips().then((CareTipData) => setAllCareTips(CareTipData));
+        getAllCareTips().then((CareTipData) => setAllCareTips(CareTipData))
     }, [])
 
     useEffect(() => {
-        getAllPlantTypes().then((plantTypeData) => setAllPlantTypes(plantTypeData));
+        getAllPlantTypes().then((plantTypeData) => setAllPlantTypes(plantTypeData))
     }, [])
 
     const changePlantState = (domEvent) => {
@@ -88,14 +88,13 @@ export const EditCurrentPlant = () => {
 
 
     return (
-        <>
-            <section>
+            <section key={`plant--${plant.id}`}>
                 <div className="container">
-                    <div class="field">
-                        <label class="label">Plant Age</label>
-                        <div class="control">
+                    <div className="field">
+                        <label className="label">Plant Age</label>
+                        <div className="control">
                             <input
-                                class="input is-success"
+                                className="input is-success"
                                 type="text"
                                 id="plant_age"
                                 required
@@ -106,11 +105,12 @@ export const EditCurrentPlant = () => {
                             />
                         </div>
                     </div>
-                    <div class="field">
-                        <label class="label">plant name</label>
-                        <div class="">
+        
+                    <div className="field">
+                        <label className="label">plant name</label>
+                        <div className="">
                             <input
-                                class="input is-success"
+                                className="input is-success"
                                 type="text"
                                 id="plant_name"
                                 required
@@ -122,12 +122,11 @@ export const EditCurrentPlant = () => {
                         </div>
                     </div>
 
-
-                    <div class="field">
-                        <label class="label">New Plant Care</label>
-                        <div class="control">
+                    <div className="field">
+                        <label className="label">New Plant Care</label>
+                        <div className="control">
                             <textarea
-                                class="textarea"
+                                className="textarea"
                                 id="new_plant_care"
                                 required
                                 autoFocus
@@ -138,13 +137,13 @@ export const EditCurrentPlant = () => {
                         </div>
                     </div>
 
-                    <div class="field ">
-                        <label class="label">Add more plant care tips</label>
-                        <div class="control">
-                            <label class="checkbox">
+                    <div className="field ">
+                        <label className="label">Add more plant care tips</label>
+                        <div className="control">
+                            <label className="checkbox">
                                 {allCareTips.map((careTip) => {
                                     return (
-                                        <>
+                                        <div key={`careTip--${careTip.id}`}>
                                             <label htmlFor="addTags" className="tagLabel">
                                                 {careTip.plant_tip_label}
                                             </label>
@@ -153,7 +152,7 @@ export const EditCurrentPlant = () => {
                                                 className="addTags"
                                                 value={false}
                                                 checked={chosenCareTips.has(careTip.id)}
-                                                defaultChecked={plant.care_tips.find(tip => tip.id === careTip.id) ? true : false}
+                                                // defaultChecked={plant.care_tips.find(tip => tip.id === careTip.id) ? true : false}
                                                 onChange={() => {
                                                     const copy = new Set(chosenCareTips)
                                                     if (copy.has(careTip.id)) {
@@ -164,26 +163,30 @@ export const EditCurrentPlant = () => {
                                                     setChosenCareTips(copy)
                                                 }}
                                             />
-                                        </>
-                                    );
+                                        </div>
+                                    )
                                 })}
                             </label>
                         </div>
                     </div>
-                    <div className="column level">
+
+                    <div className="column level" >
                         <span className="level-item">Current plant care tips attached to this plant.  Click to remove tips.: {previousCareTips.map(tip => {
-                            return <button onClick={() => deletePlantCareTip(tip.id).then(() => {
+                            return (<div key={`careTip--${tip.id}`}>
+                            <button onClick={() => deletePlantCareTip(tip.id).then(() => {
                                 window.location.reload(false)
                             })}>Tip: {tip?.care_tip?.plant_tip_label}</button>
+                            </div>)
                         })}</span>
                     </div>
-                    <div class="field ">
-                        <label class="label">Add more plant types</label>
-                        <div class="control">
-                            <label class="checkbox">
+
+                    <div className="field ">
+                        <label className="label">Add more plant types</label>
+                        <div className="control">
+                            <label className="checkbox">
                                 {allPlantTypes.map((plantType) => {
                                     return (
-                                        <>
+                                        <div key={`plantType--${plantType.id}`}>
                                             <label htmlFor="addTags" className="tagLabel">
                                                 {plantType.plant_type}
                                             </label>
@@ -192,34 +195,38 @@ export const EditCurrentPlant = () => {
                                                 className="addTags"
                                                 value={false}
                                                 checked={chosenPlantTypes.has(plantType.id)}
-                                                defaultChecked={plant.plant_types.find(type => type.id === plantType.id) ? true : false}
+                                                // defaultChecked={plant.plant_types.find(type => type.id === plantType.id) ? true : false}
                                                 onChange={() => {
-                                                    const copy = new Set(chosenPlantTypes);
+                                                    const copy = new Set(chosenPlantTypes)
                                                     if (copy.has(plantType.id)) {
-                                                        copy.delete(plantType.id);
+                                                        copy.delete(plantType.id)
                                                     } else {
-                                                        copy.add(plantType.id);
+                                                        copy.add(plantType.id)
                                                     }
-                                                    setChosenPlantTypes(copy);
+                                                    setChosenPlantTypes(copy)
                                                 }}
                                             />
-                                        </>
-                                    );
+                                        </div>
+                                    )
                                 })}
                             </label>
                         </div>
                     </div>
+
                     <div className="column level">
                         <span className="level-item">Current plant types attached to this plant.  Click to remove types.:{previousPlantTypes.map((type) => {
-                            return <button onClick={() => {
+                            return (<div key={`plantTip--${type.id}`}>
+                            <button onClick={() => {
                                 deletePlantType(type.id).then(() => {
                                     window.location.reload(false)
                                 })
                             }}>Type: {type?.plant_type?.plant_type}</button>
+                            </div>)
                         })}</span>
                     </div>
-                    <div class="field is-grouped">
-                        <div class="control">
+
+                    <div className="field is-grouped">
+                        <div className="control">
                             <button
                                 type="submit"
                                 onClick={(evt) => {
@@ -242,12 +249,12 @@ export const EditCurrentPlant = () => {
                                 update this plants deets.
                             </button>
                         </div>
-                        <div class="control">
-                            <button onClick={() => navigate("/myPlants")} class="button is-link is-light">Cancel</button>
+
+                        <div className="control">
+                            <button onClick={() => navigate("/myPlants")} className="button is-link is-light">Cancel</button>
                         </div>
                     </div>
                 </div>
             </section>
-        </>
     )
 }

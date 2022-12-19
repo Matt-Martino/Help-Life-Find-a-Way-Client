@@ -19,7 +19,6 @@ export const PlantDetails = () => {
 
     return <>
         <section>
-
             <div className="level">
                 <div className="columns level-item">
                     <div className="card column is-three-quarters">
@@ -58,8 +57,6 @@ export const PlantDetails = () => {
                     > Edit plant details</button>
                     : ""
             }
-
-
         </section>
     </>
 }
