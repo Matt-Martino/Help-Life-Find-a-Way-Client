@@ -81,11 +81,11 @@ export const CreateNewPlant = () => {
       <div className="columns">
         <div className="column level">
           <div className="container">
-            <div class="field">
-              <label class="label">Plant Age</label>
-              <div class="control">
+            <div className="field">
+              <label className="label">Plant Age</label>
+              <div className="control">
                 <input
-                  class="input is-success"
+                  className="input is-success"
                   type="text"
                   id="plant_age"
                   required
@@ -96,11 +96,11 @@ export const CreateNewPlant = () => {
                 />
               </div>
             </div>
-            <div class="field">
-              <label class="label">plant name</label>
-              <div class="">
+            <div className="field">
+              <label className="label">plant name</label>
+              <div className="">
                 <input
-                  class="input is-success"
+                  className="input is-success"
                   type="text"
                   id="plant_name"
                   required
@@ -125,11 +125,11 @@ export const CreateNewPlant = () => {
                 >Upload Image</button>
               </div>
             </div>
-            <div class="field">
-              <label class="label">New Plant Care</label>
-              <div class="control">
+            <div className="field">
+              <label className="label">New Plant Care</label>
+              <div className="control">
                 <textarea
-                  class="textarea"
+                  className="textarea"
                   id="new_plant_care"
                   required
                   autoFocus
@@ -139,13 +139,13 @@ export const CreateNewPlant = () => {
                 ></textarea>
               </div>
             </div>
-            <div class="field ">
-              <label class="label">Plant care tip</label>
-              <div class="control">
-                <label class="checkbox">
+            <div className="field ">
+              <label className="label">Plant care tip</label>
+              <div className="control">
+                <label className="checkbox">
                   {allCareTips.map((careTip) => {
                     return (
-                      <>
+                      <div key={`careTip--${careTip.id}`}>
                         <label htmlFor="addTags" className="tagLabel">
                           {careTip.plant_tip_label}
                         </label>
@@ -163,18 +163,18 @@ export const CreateNewPlant = () => {
                             setChosenCareTips(copy);
                           }}
                         />
-                      </>
+                      </div>
                     );
                   })}
                 </label>
               </div>
-            </div><div class="field ">
-              <label class="label">Plant type</label>
-              <div class="control">
-                <label class="checkbox">
+            </div><div className="field ">
+              <label className="label">Plant type</label>
+              <div className="control">
+                <label className="checkbox">
                   {allPlantTypes.map((plantType) => {
                     return (
-                      <>
+                      <div key={`plantType--${plantType.id}`}>
                         <label htmlFor="addTags" className="tagLabel">
                           {plantType.plant_type}
                         </label>
@@ -192,14 +192,14 @@ export const CreateNewPlant = () => {
                             setChosenPlantTypes(copy);
                           }}
                         />
-                      </>
+                      </div>
                     );
                   })}
                 </label>
               </div>
             </div>
-            <div class="field is-grouped">
-              <div class="control">
+            <div className="field is-grouped">
+              <div className="control">
                 <button
                   type="submit"
                   onClick={(evt) => {
@@ -218,8 +218,8 @@ export const CreateNewPlant = () => {
                   Add this new plant to your collection!
                 </button>
               </div>
-              <div class="control">
-                <button class="button is-link is-light">Cancel</button>
+              <div className="control">
+                <button className="button is-link is-light">Cancel</button>
               </div>
             </div>
           </div>

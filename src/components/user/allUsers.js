@@ -19,10 +19,10 @@ export const ViewAllUsers = () => {
         <h1 className="title is-1 level-item">All users</h1>
         {
           allUsers.map(user =>
-            { return <>
-                <section>
+            { return (
+                <section key={`user--${user.id}`}>
 
-                <div key={`user--${user.id}`}>
+                <div>
                   <div className="level">
                     <div className="columns level-item">
                       <div className="card column is-three-quarters">
@@ -54,7 +54,7 @@ export const ViewAllUsers = () => {
                 <br></br>
                 <br></br>
                 </section>
-           </> 
+            )
            }
           )
         }

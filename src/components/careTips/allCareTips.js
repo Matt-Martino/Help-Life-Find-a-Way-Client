@@ -25,15 +25,14 @@ export const ViewAllCareTips = () => {
                 <div style={{ margin: "0rem 3rem" }}>
                     {
                         allCareTips.map(careTip => {
-                            return (
-                                <>
-                                    <div className="container">
+                            return ( 
+                                    <div className="container" key={`careTip--${careTip.id}`}>
                                         <div className="columns">
                                             <div className="column"> {careTip.plant_tip_label}</div>
                                             <div className="column"> {careTip.description_of_tip}</div>
                                         </div>
                                     </div>
-                                </>
+                                
                             )
                         })
 
