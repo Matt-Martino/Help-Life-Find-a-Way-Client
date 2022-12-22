@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { AdoptThisPlant, getAvailablePlants } from "../../managers/PlantManager"
 
 
 export const AvailablePlants = () => {
     const [availablePlants, setAvailablePlants] = useState([])
-
+    const navigate = useNavigate()
     useEffect(() => {
         getAvailablePlants().then((plantData) => setAvailablePlants(plantData))
 
@@ -15,7 +16,7 @@ export const AvailablePlants = () => {
     const adoptPlantButton = (plant) => {
         return <>
           <button className="button is-small is-info is-focused"
-            onClick={() => {AdoptThisPlant(plant) }}
+            onClick={() => {AdoptThisPlant(plant).then(navigate("/myPlants"))}}
           >Adopt this available plant.
           </button>
         </>
