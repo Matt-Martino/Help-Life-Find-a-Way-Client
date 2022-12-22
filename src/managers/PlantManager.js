@@ -64,7 +64,7 @@ export const UpdatePlantInfo = (plant) => {
         },
         body: JSON.stringify(plant)
         
-    }).then(res => res.json())
+    })
     }
 
 export const AdoptThisPlant = (plant) => {
@@ -76,7 +76,7 @@ export const AdoptThisPlant = (plant) => {
         },
         body: JSON.stringify(plant)
         
-    }).then(res => res.json())
+    })
     }
 
 export const getAvailablePlants = () => {

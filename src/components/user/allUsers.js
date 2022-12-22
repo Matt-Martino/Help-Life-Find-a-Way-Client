@@ -34,9 +34,9 @@ export const ViewAllUsers = () => {
                               <div className="media">
                               </div>
                             </div>
-                            <div className="column">
+                            <div className="column"> Bio: {user.bio}
                               <div className="content">
-                                <div className="title is-3">
+                                <div className="title is-5">
                                   <Link to={`/plants/user/${user.id}`} > View {user?.user?.username} plant collection.
                                   </Link>
                                   

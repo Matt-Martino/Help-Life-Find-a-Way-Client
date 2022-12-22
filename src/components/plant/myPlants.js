@@ -50,7 +50,7 @@ export const ViewMyPlants = () => {
       {
         plants.map(plant =>
           <section key={`plants--${plant.id}`}>
-            <div >
+            <div className="is-outlined">
               <div className="level">
                 <div className="columns level-item">
                   <div className="card column is-three-quarters">
@@ -58,9 +58,9 @@ export const ViewMyPlants = () => {
                       <div className="columns">
                         <div className="column">
                           <div className="media">
-                            <div className="media-left">
+                            <figure className="media-left">
                               <img src={plant.plant_image} className="uploaded_image" key={`plants--${plant.id}`} />
-                            </div>
+                            </figure>
                             <div className="media-content">
                               <div>
                                 <p key={`plants--${plant.id}`} className="title is-4"> {plant.user?.full_name}</p>
