@@ -5,60 +5,63 @@ import { getAllUsers } from "../../managers/UserManager"
 
 
 export const ViewAllUsers = () => {
-    const [allUsers, setAllUsers] = useState([])
-    
-    useEffect(() => {
-        getAllUsers().then((userData) => setAllUsers(userData))
-    
-      }, [])
+  const [allUsers, setAllUsers] = useState([])
+
+  useEffect(() => {
+    getAllUsers().then((userData) => setAllUsers(userData))
+
+  }, [])
 
 
 
-      return (
-      <>
-        <h1 className="title is-1 level-item">All users</h1>
-        {
-          allUsers.map(user =>
-            { return (
-                <section key={`user--${user.id}`}>
+  return (
+    <>
+      <h1 className="title is-1 level-item">All users</h1>
+      {
+        allUsers.map(user => {
+          return (
+            <section className="columns  is-3 is-centered" key={`user--${user.id}`}>
+              <div className="card-content has-background-success">
+                <div className="columns ">
+                  <div className="media">
+                    <div className="media-center">
+                      <div className="box">
+                        <div className="block">
+                        <div className="button is-small is-success is-light is-outlined">
+                              <div className="title is-5">
+                                <Link to={`/plants/user/${user.id}`} > View {user?.user?.username} plant collection.
+                                </Link>
 
-                <div>
-                  <div className="level">
-                    <div className="columns level-item">
-                      <div className="card column is-three-quarters">
-                        <div className="card-image">
-                        </div>
-                        <div className="card-content">
-                          <div className="columns">
-                            <div className="column"> User {user.full_name}'s has {user.plant_count} plants in their collection.
-                              <div className="media">
                               </div>
                             </div>
-                            <div className="column"> Bio: {user.bio}
-                              <div className="content">
-                                <div className="title is-5">
-                                  <Link to={`/plants/user/${user.id}`} > View {user?.user?.username} plant collection.
-                                  </Link>
-                                  
-                                </div>
-                              </div>
-                            </div>
+                        
+
+                        
+                          <div className="box"> <strong>Bio: </strong>
+                            <p className="box">{user.bio}
+                            </p> 
+                            <p>
+                             <strong>{user.full_name}</strong> has <strong>{user.plant_count}</strong> plants in their collection.  
+                            </p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                </section>
-            )
-           }
+              </div>
+
+
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+            </section>
           )
         }
-      </>
-    )
-      
+        )
+      }
+    </>
+  )
+
 }

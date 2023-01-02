@@ -19,7 +19,6 @@ export const AllPlants = () => {
 
         return (
           <>
-              <section className="box">
                 {allPlants.map((plant) => (
                 <AllPlantsSingleView
                 key={`plants--${plant.id}`}
@@ -34,7 +33,6 @@ export const AllPlants = () => {
                 id= {plant.id}
                 />
                 ))}
-              </section>
           </>
         )
     
