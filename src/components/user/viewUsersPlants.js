@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { getPlantsByUserId } from "../../managers/PlantManager"
+import { getUserById } from "../../managers/UserManager"
 
 
 
 export const ViewSpecificUsersPlants = () => {
     const { userId } = useParams()
     const [userPlants, setUserPlants] = useState([])
+    const [selectedUser, setUser] = useState({})
 
     useEffect(() => {
         getPlantsByUserId(userId).then((userPlants) => {
@@ -14,53 +16,76 @@ export const ViewSpecificUsersPlants = () => {
         })
     }, [userId])
 
+    useEffect(() => {
+        getUserById(userId).then((user) => {
+            setUser(user)
+        })
+    }, [userId])
+
+
 
 
     return (
         <>
-            <h1 className="title is-1 level-item">Plants</h1>
+            <h1 className="title is-3 level-item">{selectedUser?.user?.username}'s Plant collection</h1>
             {
-                userPlants.map(plant => 
+                userPlants.map(plant =>
                     userPlants.length > 0
-                        ? <div key={`plant--${plant.id}`}>
-                                <div className="level">
-                                    <div className="columns level-item">
-                                        <div className="card column is-three-quarters">
-                                            <div className="card-image">
-                                            </div>
-                                            <div className="card-content">
-                                                <div className="columns">
-                                                     <div className="column">
-                                                        <div className="columns">
-                                                            
-                                                            <img src={plant.plant_image} className="uploaded_image" />
-                                                            
-                                                            <div className="column level">
-                                                                <span className="level-item">Plant name: {plant.plant_name}</span>
-                                                            </div>
-                                                            <div className="column level">
-                                                                <span className="level-item">New plant care: {plant.new_plant_care}</span>
-                                                            </div>
-                                                        </div>
-                                                        </div>
-                                                        <div className="column">
-                                                            <div className="content">
-                                                            </div>
+                        ? <section key={`plant--${plant.id}`} className="columns is-3 is-centered">
+                            <div className="card-content has-background-success">
+                                <div className="columns">
+                                    <div className="media">
+                                        <div className="media-center">
+                                            <div className="box">
+                                                <div className="box">Expand plant details:
+                                                    <Link className="level-item" to={`/plants/${plant.id}`}>
+                                                        {plant.plant_name}.
+                                                    </Link>
+                                                </div>
+
+
+                                                <div className="box"><strong>Plant name: </strong>
+                                                    <span> {plant.plant_name}</span>
+                                                </div>
+
+                                                <div className="card ">
+                                                    <div className="card-image">
+                                                        <figure className="uploaded_image">
+                                                            <img src={plant.plant_image} />
+                                                        </figure>
+                                                    </div>
+                                                </div>
+
+
+                                                <div className="column level">
+
+
+                                                    <div className="box"><strong>New plant care: </strong>
+                                                        <span>{plant.new_plant_care}</span>
+                                                    </div>
+
+
+
+                                                    <div className="column">
+                                                        <div className="content">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
                                 </div>
-                            : <> <h1 className="title">User has no plants.</h1>
-                            </>
-                            )
-          }
+                            </div>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                        </section>
+
+                        : <> <h1 className="title">User has no plants.</h1>
                         </>
-      )
+                )
             }
+        </>
+    )
+}

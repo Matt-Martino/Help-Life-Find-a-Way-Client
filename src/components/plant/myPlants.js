@@ -17,7 +17,7 @@ export const ViewMyPlants = () => {
 
   const deletePlantButton = (plantId) => {
     return <>
-      <button className="button is-small is-danger is-focused"
+      <button className="button is-small is-danger is-light is-outlined"
         onClick={() => {
           if (window.confirm('Sorry for your loss')) {
             makeDeleteRequest(plantId)
@@ -31,7 +31,7 @@ export const ViewMyPlants = () => {
 
   const clonePlantButton = (plant) => {
     return <>
-      <button className="button is-small is-info is-focused"
+      <button className="button is-small is-success is-light is-outlined"
         onClick={() => { ClonePlant(plant) }}
       >Clone plant and make available.
       </button>
@@ -49,35 +49,36 @@ export const ViewMyPlants = () => {
     return <>
       {
         plants.map(plant =>
-          <section key={`plants--${plant.id}`}>
-            <div className="is-outlined">
-              <div className="level">
-                <div className="columns level-item">
-                  <div className="card column is-three-quarters">
-                    <div className="card-content">
-                      <div className="columns">
-                        <div className="column">
-                          <div className="media">
-                            <figure className="media-left">
-                              <img src={plant.plant_image} className="uploaded_image" key={`plants--${plant.id}`} />
-                            </figure>
-                            <div className="media-content">
-                              <div>
-                                <p key={`plants--${plant.id}`} className="title is-4"> {plant.user?.full_name}</p>
-                              </div>
-                            </div>
-                          </div>
+          <section key={`plants--${plant.id}`} className="columns is-3 is-centered">
+            <div className="card-content has-background-success">
+              <div className="columns">
+                <div className="media">
+                  <div className="media-center">
+                    <div className="box">
+                      <div className="box">Expand plant details:
+                        <Link className="level-item" to={`/plants/${plant.id}`}>
+                          {plant.plant_name}.
+                        </Link>
+                      </div>
+                      <div className="box">
+                        <div>Create another copy of this plant:
+                          <p className="box">
+                            {clonePlantButton(plant)}
+                          </p>
                         </div>
-                        <div className="column">
-                          <div className="content">
-                            <div className="title is-3">
-                              <Link to={`/plants/${plant.id}`}>
-                                {plant.plant_name}.
-                              </Link>
-                              {clonePlantButton(plant)}
-                              {deletePlantButton(plant.id)}
-                            </div>
-                          </div>
+                      </div>
+                      <div className="card ">
+                        <div className="card-image">
+                          <figure className="uploaded_image">
+                            <img src={plant.plant_image} key={`plants--${plant.id}`} />
+                          </figure>
+                        </div>
+                      </div>
+                      <div className="box">
+                        <div>Remove:
+                          <p className="box">
+                            {deletePlantButton(plant.id)}
+                          </p>
                         </div>
                       </div>
                     </div>

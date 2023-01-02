@@ -18,45 +18,49 @@ export const PlantDetails = () => {
 
 
     return <>
-        <section>
-            <div className="level">
-                <div className="columns level-item">
-                    <div className="card column is-three-quarters">
-                        <div className="card-content">
+        <section className="columns is-3 is-centered">
+                        <div className="card-content has-background-success">
                             <div className="columns">
-                                <div className="column">
-                                    <div className="media">
-                                        <div className="media-center">
-                                            <div className="level-item">Username: {thePlant?.user?.username}</div>
-
+                                <div className="media">
+                                    <div className="media-center">
+                                        <div className="box">
+                                            <div className="box"><strong>Username:</strong>
+                                                <div className="level-item">{thePlant?.user?.username}'s plant.</div>
+                                            </div>
                                             <img src={thePlant.plant_image} className="uploaded_image" />
+                                            <div className="box"><strong>Plant name:</strong>
+                                                <span className="level-item">{thePlant.plant_name}</span>
+                                            </div>
+                                            <div className="box"><strong>New plant care:</strong>
+                                                <span className="level-item"> {thePlant.new_plant_care}</span>
+                                            </div>
+                                            <div className="box"><strong> Care Tip:</strong>
+                                                <span className="box">  {thePlant?.care_tips?.map(careTip => {
+                                                    return <div key={`careTip--${careTip.id}`} className="box"> <em>{careTip.plant_tip_label}: </em>{careTip.description_of_tip}</div>
+                                                })}</span>
+                                            </div>
+                                            <div > <strong>Plant types:</strong>
+                                                <span className="box">  {thePlant?.plant_types?.map(plantType => {
+                                                    return <div key={`plantType--${plantType.id}`} className="box"> {plantType.plant_type}</div>
 
-                                            <span className="level-item">Plant name: {thePlant.plant_name}</span>
-
-                                            <span className="level-item">New plant care: {thePlant.new_plant_care}</span>
-
-                                            <span className="level-item">  {thePlant?.care_tips?.map(careTip => {
-                                                return <div key={`careTip--${careTip.id}`}> Care Tip:  {careTip.plant_tip_label}</div>
-                                            })}</span>
-
-                                            <span className="level-item">  {thePlant?.plant_types?.map(plantType => {
-                                                return <div key={`plantType--${plantType.id}`}> Plant type: {plantType.plant_type}</div>
-                                            })}</span>
+                                                })}</span>
+                                            </div>
+                                            <div className="box">
+                                                {
+                                                    (thePlant?.user?.username == loggedInUsername)
+                                                        ? <button className="button is-small is-success is-light is-outlined"
+                                                            onClick={() => { navigate({ pathname: `/plants/${plantId}/edit` }) }}
+                                                        > Click to edit {thePlant.plant_name}'s details</button>
+                                                        : ""
+                                                }
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            {
-                (thePlant?.user?.username == loggedInUsername)
-                    ? <button
-                        onClick={() => { navigate({ pathname: `/plants/${plantId}/edit` }) }}
-                    > Edit plant details</button>
-                    : ""
-            }
         </section>
+
+
     </>
 }
