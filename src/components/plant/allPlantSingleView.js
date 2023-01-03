@@ -24,7 +24,9 @@ export const AllPlantsSingleView = ({ id, username, plant_name, plant_image }) =
                                             <img src={plant_image} />
                                         </figure>
                                     </div>
-                                    <span className="level-item">{plant_name}</span>
+                                    <div className="box">
+                                    <span className="level-item">This is {plant_name}</span>
+                               </div>
                                 </div>
                             </div>
                         </div>
