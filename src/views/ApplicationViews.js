@@ -12,6 +12,7 @@ import { PlantDetails } from "../components/plant/plantDetails"
 import { ViewAllUsers } from "../components/user/allUsers"
 import { ViewSpecificUsersPlants } from "../components/user/viewUsersPlants"
 import { Authorized } from "./Authorized"
+import { EditUserDetails } from "../components/user/editUserDetails"
 
 
 export const ApplicationViews = () => {
@@ -30,6 +31,7 @@ export const ApplicationViews = () => {
       <Route path="/users" element={<ViewAllUsers />}/>
       <Route path="/plants/user/:userId" element={<ViewSpecificUsersPlants />}/>
       <Route path="/plants/available" element={<AvailablePlants />} />
+      <Route path="users/editUser" element={<EditUserDetails/>} />
     </Routes>
   </>
 }

@@ -24,23 +24,28 @@ export const ViewAllUsers = () => {
               <div className="card-content has-background-success">
                 <div className="columns">
                   <div className="column">
-                  <div className="media">
-                    <div className="media-center">
-                      <div className="box">
-                        <div className="block">
-                          <div className="button is-small is-success is-light is-outlined">
-                            <div className="title is-5">
-                              <Link to={`/plants/user/${user.id}`} > View {user?.user?.username}'s entire collection of plants.
-                              </Link>
-
+                    <div className="media">
+                      <div className="media-center">
+                        <div className="box">
+                          <div className="block">
+                                <figure className="media-right">
+                                  <p className="image is-64x64">
+                                    <img src={user.profile_image_url} />
+                                  </p>
+                                </figure>
+                            <div className="button is-small is-success is-light is-outlined">
+                              <div className="title is-5">
+                                <Link to={`/plants/user/${user.id}`} > View {user?.user?.username}'s entire collection of plants.
+                                </Link>
+                              </div>
                             </div>
-                          </div><div className="box"> <strong>Bio: </strong>
-                            <p className="box">{user.bio}
-                            </p>
-                            <p>
-                              <strong>{user.full_name}</strong> has <strong>{user.total_plant_count}</strong> plants in their collection.  <strong>{user.available_plant_count}</strong> are available to claim!
-                            </p>
-                          </div>
+                            <div className="box"> <strong>Bio: </strong>
+                              <p className="box">{user.bio}
+                              </p>
+                              <p>
+                                <strong>{user.full_name}</strong> has <strong>{user.total_plant_count}</strong> plants in their collection.  <strong>{user.available_plant_count}</strong> are available to claim!
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>

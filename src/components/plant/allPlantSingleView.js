@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 
-export const AllPlantsSingleView = ({ id, username, plant_name, plant_image }) => {
+export const AllPlantsSingleView = ({ id, profilePic, username, plant_name, plant_image }) => {
 
     return <>
 
@@ -15,7 +15,15 @@ export const AllPlantsSingleView = ({ id, username, plant_name, plant_image }) =
                                     <Link className="level-item" to={`/plants/${id}`} >{plant_name}</Link>
                                 </div>
                                 <div className="box"><strong>Owner of plant </strong>
-                                    <div className="level-item">{username}</div>
+                                    <div className="level-item">{username}
+                                    
+                                    <figure className="media-right">
+                                            <p className="image is-64x64">
+                                                <img src={profilePic} />
+                                            </p>
+                                        </figure>
+
+                                    </div>
                                 </div>
 
                                 <div className="card ">

@@ -22,13 +22,16 @@ export const NavBar = () => {
               <Link to="/newPlant" className="navbar-item">Add New Plant</Link>
             </div>
             <div className="navbar-item">
-              <Link to="/users" className="navbar-item">All Users</Link>
-            </div>
-            <div className="navbar-item">
               <Link to="/plants/available" className="navbar-item">Available Plants</Link>
             </div>
             <div className="navbar-item">
               <Link to="/careTips" className="navbar-item">Care Tips</Link>
+            </div>
+            <div className="navbar-item">
+              <Link to="/users" className="navbar-item">All Users</Link>
+            </div>
+            <div className="navbar-item">
+              <Link to="users/editUser" className="navbar-item">Edit your profile</Link>
             </div>
             <div className="navbar-end">
               <button className="navbar is-dark"
