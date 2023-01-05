@@ -20,29 +20,27 @@ export const ViewAllUsers = () => {
       {
         allUsers.map(user => {
           return (
-            <section className="columns  is-3 is-centered" key={`user--${user.id}`}>
+            <section className="columns is-max-desktop is-centered" key={`user--${user.id}`}>
               <div className="card-content has-background-success">
-                <div className="columns ">
+                <div className="columns">
+                  <div className="column">
                   <div className="media">
                     <div className="media-center">
                       <div className="box">
                         <div className="block">
-                        <div className="button is-small is-success is-light is-outlined">
-                              <div className="title is-5">
-                                <Link to={`/plants/user/${user.id}`} > View {user?.user?.username} plant collection.
-                                </Link>
+                          <div className="button is-small is-success is-light is-outlined">
+                            <div className="title is-5">
+                              <Link to={`/plants/user/${user.id}`} > View {user?.user?.username}'s entire collection of plants.
+                              </Link>
 
-                              </div>
                             </div>
-                        
-
-                        
-                          <div className="box"> <strong>Bio: </strong>
+                          </div><div className="box"> <strong>Bio: </strong>
                             <p className="box">{user.bio}
-                            </p> 
-                            <p>
-                             <strong>{user.full_name}</strong> has <strong>{user.plant_count}</strong> plants in their collection.  
                             </p>
+                            <p>
+                              <strong>{user.full_name}</strong> has <strong>{user.total_plant_count}</strong> plants in their collection.  <strong>{user.available_plant_count}</strong> are available to claim!
+                            </p>
+                          </div>
                           </div>
                         </div>
                       </div>
@@ -50,12 +48,6 @@ export const ViewAllUsers = () => {
                   </div>
                 </div>
               </div>
-
-
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
             </section>
           )
         }

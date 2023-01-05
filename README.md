@@ -59,9 +59,14 @@ https://github.com/Matt-Martino/Help-Life-Find-a-Way-Client
 https://github.com/Matt-Martino/Help-Life-Find-a-Way-Server
 
 3.  Navigate to  the server directory. 
+
 Launch your virtual environment with command ```pipenv shell ```
-Launch the server with ```code . ```
-Open the SQL database with ``` ctrl + shift + p ``` and select ```SQLite: Open Database ``` and select ``` db.sqlite3```
+
+Launch vs code with ```code . ```
+
+If you'd like to view the data in vs code than...
+Open the SQL database to view data with ``` ctrl + shift + p ``` and select ```SQLite: Open Database ``` and select ``` db.sqlite3```
+
 Run the debugger ``` ctrl + shift + D ```
 
 4. Navigate the the client directory.
