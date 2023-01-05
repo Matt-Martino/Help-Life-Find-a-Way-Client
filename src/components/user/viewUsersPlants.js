@@ -41,6 +41,11 @@ export const ViewSpecificUsersPlants = () => {
                                                     <Link className="level-item" to={`/plants/${plant.id}`}>
                                                         {plant.plant_name}.
                                                     </Link>
+                                                    <figure className="media-right">
+                                                        <p className="image is-64x64">
+                                                            <img src={selectedUser.profile_image_url} />
+                                                        </p>
+                                                    </figure>
                                                 </div>
 
 

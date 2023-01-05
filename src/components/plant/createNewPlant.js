@@ -120,9 +120,7 @@ export const CreateNewPlant = () => {
                           type="file"
                           onChange={(event) => {
                             setImage(event.target.files[0])
-                          }}
-
-                        >
+                          }}>
                         </input>
                       </div>
                       <div>
@@ -145,7 +143,7 @@ export const CreateNewPlant = () => {
                       </div>
                     </div>
                     <div className="field ">
-                      <label className="label">Please select all Plant care tip's that apply.</label>
+                      <label className="label">Please select all Plant care tips that apply.</label>
                       <div>
                         <label>
                           {allCareTips.map((careTip) => {
@@ -173,8 +171,9 @@ export const CreateNewPlant = () => {
                           })}
                         </label>
                       </div>
-                    </div><div className="field ">
-                      <label className="label">Please select any Plant type's that apply.</label>
+                    </div>
+                    <div className="field ">
+                      <label className="label">Please select all Plant types that apply.</label>
                       <div>
                         <label>
                           {allPlantTypes.map((plantType) => {
@@ -224,7 +223,8 @@ export const CreateNewPlant = () => {
                         </button>
                       </div>
                       <div className="control">
-                        <button className="button is-link is-light">Cancel</button>
+                        <button className="button is-danger is-light"
+                        onClick={() => navigate("/")}>Cancel</button>
                       </div>
                     </div>
                   </div>
@@ -235,6 +235,6 @@ export const CreateNewPlant = () => {
         </div>
       </div>
     </section>
-    </>
+  </>
   )
 }

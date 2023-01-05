@@ -23,6 +23,7 @@ export const AllPlants = () => {
                 <AllPlantsSingleView
                 key={`plants--${plant.id}`}
                 username={plant.user.username}
+                profilePic={plant.user.profile_image_url}
                 available={plant.available}
                 new_plant_care={plant.new_plant_care}
                 plant_age={plant.plant_age}

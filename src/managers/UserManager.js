@@ -33,3 +33,24 @@ return fetch(`http://localhost:8000/users/${userId}`, {
     method: "DELETE",
 })
 }
+
+export const getCurrentUser = () => {
+    return fetch(`http://localhost:8000/helplifeusers?currentUser`, {
+    headers:{
+        "Authorization": `Token ${localStorage.getItem("help_token")}`
+    }
+    })
+        .then(res => res.json())
+    }
+
+export const UpdateUserInfo = (user) => {
+    return fetch(`http://localhost:8000/helplifeusers/${user.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("help_token")}`
+        },
+        body: JSON.stringify(user)
+        
+    })
+    }
