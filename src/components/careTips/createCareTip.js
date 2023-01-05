@@ -75,7 +75,7 @@ export const CreateCareTip = () => {
                         }
                         addNewCareTip(newCareTipToAPI).then(navigate("/careTips"))
                       }}
-                      className="btn btn-primary"
+                      className="button is-small is-success is-light is-outlined"
                     >
                       Add this new plant care tip
                     </button>

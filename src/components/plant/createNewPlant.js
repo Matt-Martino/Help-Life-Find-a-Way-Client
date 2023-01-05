@@ -229,8 +229,6 @@ export const CreateNewPlant = () => {
                     </div>
                   </div>
                 </div>
-
-
               </div>
             </div>
           </div>
