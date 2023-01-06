@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 
-export const AllPlantsSingleView = ({ id, profilePic, username, plant_name, plant_image }) => {
+export const AllPlantsSingleView = ({ id, profilePic, userId, username, plant_name, plant_image }) => {
 
     return <>
 
@@ -11,19 +11,19 @@ export const AllPlantsSingleView = ({ id, profilePic, username, plant_name, plan
                     <div className="media">
                         <div className="media-center">
                             <div className="box">
-                                <div>Learn more:
+                                <div>Learn more about:
                                     <Link className="level-item" to={`/plants/${id}`} >{plant_name}</Link>
                                 </div>
                                 <div className="box"><strong>Owner of plant </strong>
-                                    <div className="level-item">{username}
-                                    
+                                    <Link className="level-item" to={`/plants/user/${userId}`}>{username}
+                                    </Link>
                                     <figure className="media-right">
-                                            <p className="image is-64x64">
-                                                <img src={profilePic} />
-                                            </p>
-                                        </figure>
+                                        <p className="image is-64x64">
+                                            <img src={profilePic} />
+                                        </p>
+                                    </figure>
 
-                                    </div>
+
                                 </div>
 
                                 <div className="card ">
@@ -33,8 +33,8 @@ export const AllPlantsSingleView = ({ id, profilePic, username, plant_name, plan
                                         </figure>
                                     </div>
                                     <div className="box">
-                                    <span className="level-item">This is {plant_name}</span>
-                               </div>
+                                        <span className="level-item">This is {plant_name}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
