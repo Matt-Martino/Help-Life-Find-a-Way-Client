@@ -1,21 +1,24 @@
 # Help Life Find a Way.
 
-An application for users show off their cool collection of plants and have the ability to share clippings and information with others.
+An application for users show off their cool collection of plants with pictures of the plants, tags of plant types, and care tips associated with the plant.  Users also have the ability to share their plant offspring with other users because that is the heart of the app.  
+
 
 # Introduction:
 
 Hello.  My name is Matt Martino and I am bringing you an app I developed for my final capstone at Nashville Software School.  It is called Help Life Find a Way, and it is an app where users can keep track of their plant collection, and offer up their current plants clippings to other users to adopt. 
 
+
 # Motivation
-I was motivated to do this project because I have a hard time throwing away all my good plant clippings when I would rather just give them to people to enjoy.  When you take care of plants fairly well, you will be cursed with the burden of having to have to manage the plants new growth.  Usually you trim the plant and throw away the extra bits, but I have always had a hard time with that.  A lot of it was from my zoo keeping days where I was in charge of managing the plant propagation station.  I would have to propagate plant clippings into new plants in order to keep the life in the exhibits more vibrant.  It was a lot of fun, and a lot of my old house plants are from clippings from the zoo, and because I have fond memories of these plants and the animals I had with them, that it is just so hard to throw away perfectly good plants!  So, I developed an app that would allow me to give them away to others.
+I was motivated to do this project because I always have a hard time throwing away my plant clippings. When you take care of plants fairly well, you will be cursed with the burden of having to have to manage the plants new growth.  Usually you trim the plant and throw away the extra bits, but I have always had a hard time with that.  A lot of it was from my zoo keeping days where I was in charge of managing the plant propagation station.  I would have to propagate plant clippings into new plants in order to keep the life in the exhibits more vibrant.  It was also a way to keep the rare plants going long term.  It is a lot of fun, and a lot of my household plants are from clippings from the zoo. I have fond memories of these plants and the animals I cared in the same exhibits that it is just so hard to throw these perfectly good plants away!  So, I developed an app that would allow me to give them away to others, and feel glad that life is finding a way to survive. 
+
 
 # How does it work?
 
 1. Login/register.
-New users can register a new account with the classic django model, with the addition of a Help Life User model to store a little more information like user profile image, and a short bio about themselves.
+New users can register a new account with the classic django model, with the addition of a Help Life User model to store a little more information like user profile image, and a short bio about themselves.  User profile image will be rendered throughout the page as a symbol of an individual, and a bio can be viewed on the All Users page.  
 
 2. Home page.
-The home page view shows all the plants that have been uploaded to Help Life Find a Way.  It shows the plant image, the username of the plant owner, and then name of the plant that is a link that will bring up that specific plants details page.
+The home page view shows all the plants that have been uploaded to Help Life Find a Way.  Here it renders each plant like a card with the same information displayed on each plant.  It shows the plant image, the username + profile image of the plant owner.  The name of the plant that is a link that will bring up that specific plants details page.
 
 3. Plant Details page.
 After a user clicks on the plant name of one of the plants, it will redirect them to the plant details page.  Here the user can view all the information about the plant that the owner has put in for it.  It renders the plant image and below it it displays the plant care tips that the owner has selected for the plant.  It also renders the plant type that the owner selected for it as well.  
@@ -40,6 +43,7 @@ When a user wants to add a new plant to their collection they click on "add new 
 7. All Users.
 When a user clicks on the navbar link All Users they will be taken to the user view page.  Here the users are listed out by username, their bio, a count of how many plants are in their collection, and a link to view that said collection.  Clicking on the link to view a specific users plants will render the list of all their plants.  Here it will display the plant pic, the name, and the new plant care instructions.  
 
+
 # How was it developed
 
 Initial concept on Help Life Find a Way was thought up when I was brainstorming ideas for my final capstone while tending to my plants.  I was trying to think of something that would require management of an inventory somehow, and ended up trimming one of my plants and setting the clipping up to be an individual plant for one of my family members who liked the flowers.  This gave me the concept to develop the rest of the project around.  Time was spend now working on the ERD and how all the data would interact with each other.  After I had a good idea of how the data would relate to each other I then drew uo a wireframe to sculpt the look of how I would like it to look.  
@@ -49,6 +53,8 @@ After planning what I wanted to do and how it would look, the app was then desig
 Each feature was implemented one at a time.  I decided to focus on one working piece at a time and make sure that the newest feature did not break the previous ones.  Testing after each feature always led to some interesting bugs, but turned out to be some of my most memorable moments from the project.  
 
 Initially, I made myself some tickets to go off of but ended up using my hand written notes to follow along.  Looking back, I feel they were a good guide and helped me stay on task in order to finish up one idea before starting another.  This really helped me stay on track and reach MVP for the project without having to go back a redo what was already completed.
+
+
 
 # How to install and run the application
 
