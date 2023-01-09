@@ -19,8 +19,16 @@ export const EditUserDetails = () => {
         getCurrentUser()
             .then((theUser) => {
                 setCurrentUser(theUser)
+            }).then(() => {
+                setSavedImage(currentUser.profile_image_url)
             })
+                
+            
     }, [])
+
+    useEffect(() => {
+                setSavedImage(currentUser.profile_image_url)        
+    }, [currentUser])
 
     const changeUserState = (domEvent) => {
         const copy = { ...currentUser }
@@ -93,6 +101,7 @@ export const EditUserDetails = () => {
 
                                                         }
                                                         UpdateUserInfo(updatedUserInfo)
+                                                        navigate("/users")
                                                     }}
                                                     className="button is-small is-success is-light is-outlined"
                                                 >
