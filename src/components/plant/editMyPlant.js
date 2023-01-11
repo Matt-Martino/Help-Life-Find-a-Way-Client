@@ -144,7 +144,7 @@ export const EditCurrentPlant = () => {
                                 </div>
 
                                 <div className="field ">
-                                    <label className="label">Add more plant care tips</label>
+                                    <label className="label">Check to add more plant care tips</label>
                                     <div className="control">
                                         <label className="checkbox">
                                             {allCareTips.map((careTip) => {
@@ -158,7 +158,6 @@ export const EditCurrentPlant = () => {
                                                             className="addTags"
                                                             value={false}
                                                             checked={chosenCareTips.has(careTip.id)}
-                                                            // defaultChecked={plant.care_tips.find(tip => tip.id === careTip.id) ? true : false}
                                                             onChange={() => {
                                                                 const copy = new Set(chosenCareTips)
                                                                 if (copy.has(careTip.id)) {
@@ -177,7 +176,7 @@ export const EditCurrentPlant = () => {
                                 </div>
 
                                 <div className="column level" >
-                                    <span className="level-item">Current plant care tips attached to this plant: {previousCareTips.map(tip => {
+                                    <span className="level-item">Click to remove care tip's associated with this plant: {previousCareTips.map(tip => {
                                         return (<div key={`careTip--${tip.id}`}>
                                             <button className="button is-small is-danger is-light is-outlined" onClick={() => deletePlantCareTip(tip.id).then(() => {
                                                 window.location.reload(false)
@@ -187,7 +186,7 @@ export const EditCurrentPlant = () => {
                                 </div>
 
                                 <div className="field ">
-                                    <label className="label">Add more plant types</label>
+                                    <label className="label">Check to add more plant types</label>
                                     <div className="control">
                                         <label className="checkbox">
                                             {allPlantTypes.map((plantType) => {
@@ -201,7 +200,6 @@ export const EditCurrentPlant = () => {
                                                             className="addTags"
                                                             value={false}
                                                             checked={chosenPlantTypes.has(plantType.id)}
-                                                            // defaultChecked={plant.plant_types.find(type => type.id === plantType.id) ? true : false}
                                                             onChange={() => {
                                                                 const copy = new Set(chosenPlantTypes)
                                                                 if (copy.has(plantType.id)) {
@@ -220,7 +218,7 @@ export const EditCurrentPlant = () => {
                                 </div>
 
                                 <div className="column level">
-                                    <span className="level-item">Current plant types attached to this plant:{previousPlantTypes.map((type) => {
+                                    <span className="level-item">Click to remove plant type's associated with this plant: {previousPlantTypes.map((type) => {
                                         return (<div key={`plantTip--${type.id}`}>
                                             <button className="button is-small is-danger is-light is-outlined" onClick={() => {
                                                 deletePlantType(type.id).then(() => {
